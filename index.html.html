@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>나만의 블로그</title>
+  <style>
+    body { font-family: sans-serif; margin: 20px; background:#f5f5f5; }
+    h1 { text-align:center; }
+    textarea {
+      width: 100%; height: 200px;
+      font-size: 16px; padding: 10px;
+    }
+    #posts {
+      margin-top: 20px;
+      background:white; padding:15px; border-radius:8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+    .post {
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>나만의 블로그 ✍️</h1>
+  <textarea id="editor" placeholder="여기에 글을 작성하세요..."></textarea>
+  <button onclick="savePost()">게시하기</button>
+
+  <div id="posts"></div>
+
+  <script>
+    const editor = document.getElementById("editor");
+    const postsDiv = document.getElementById("posts");
+
+    // 🔹 입력 중 자동 저장
+    editor.addEventListener("input", ()=>{
+      localStorage.setItem("draft", editor.value);
+    });
+
+    // 🔹 저장된 임시 글 불러오기
+    window.onload = ()=>{
+      const draft = localStorage.getItem("draft");
+      if(draft) editor.value = draft;
+      loadPosts();
+    };
+
+    // 🔹 글 저장 (게시)
+    function savePost() {
+      let text = editor.value.trim();
+      if(!text) return;
+      
+      let posts = JSON.parse(localStorage.getItem("posts") || "[]");
+      posts.unshift({ content: text, date: new Date().toLocaleString() });
+      localStorage.setItem("posts", JSON.stringify(posts));
+      
+      editor.value = "";
+      localStorage.removeItem("draft"); // 임시 저장 지우기
+      loadPosts();
+    }
+
+    // 🔹 저장된 글 불러오기
+    function loadPosts() {
+      let posts = JSON.parse(localStorage.getItem("posts") || "[]");
+      postsDiv.innerHTML = "";
+      posts.forEach(p=>{
+        let div = document.createElement("div");
+        div.className="post";
+        div.innerHTML = `<b>${p.date}</b><br>${p.content}`;
+        postsDiv.appendChild(div);
+      });
+    }
+  </script>
+</body>
+</html>
