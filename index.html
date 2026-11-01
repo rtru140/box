@@ -1,0 +1,724 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#211b1b">
+<title>우리 서버</title>
+
+<style>
+:root {
+  --cream: #fff3e6;
+  --paper: #f6e5d5;
+  --brown: #684333;
+  --dark: #211b1b;
+  --gold: #e8b96d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--dark);
+  color: var(--cream);
+  font-family: "Malgun Gothic", sans-serif;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .13;
+  background-image: radial-gradient(#fff 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 7%;
+  background: #211b1bcc;
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid #ffffff12;
+}
+
+.brand {
+  font-weight: 900;
+  font-size: 17px;
+}
+
+.navlinks {
+  display: flex;
+  gap: 24px;
+}
+
+.navlinks a {
+  color: #dfcec2;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.navlinks a:hover {
+  color: var(--gold);
+}
+
+section {
+  padding: 110px 7%;
+  position: relative;
+}
+
+.hero {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  overflow: hidden;
+  padding-top: 130px;
+  background: radial-gradient(
+    ellipse at 50% 35%,
+    #754e3c66,
+    transparent 55%
+  );
+}
+
+.hero-inner {
+  max-width: 850px;
+  z-index: 1;
+}
+
+.eyebrow {
+  display: inline-block;
+  border: 1px solid #f0cda64d;
+  border-radius: 99px;
+  padding: 9px 16px;
+  color: #f2cda7;
+  font-size: 12px;
+  letter-spacing: .08em;
+}
+
+h1 {
+  font-size: clamp(42px, 8vw, 90px);
+  line-height: 1.08;
+  letter-spacing: -.075em;
+  margin: 25px 0 18px;
+}
+
+.highlight {
+  color: var(--gold);
+}
+
+.hero p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #d4c2b7;
+  margin-bottom: 30px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 14px 22px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 14px;
+  transition: .2s;
+  display: inline-block;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.primary {
+  background: var(--gold);
+  color: #35251c;
+  box-shadow: 0 10px 30px #e8b96d30;
+}
+
+.secondary {
+  border: 1px solid #ffffff35;
+  color: var(--cream);
+}
+
+.cookie {
+  position: absolute;
+  font-size: 65px;
+  animation: float 5s ease-in-out infinite;
+}
+
+.c1 { top: 22%; left: 13%; }
+.c2 { top: 30%; right: 13%; animation-delay: -2s; }
+.c3 { bottom: 15%; left: 20%; animation-delay: -3s; }
+.c4 { bottom: 18%; right: 19%; animation-delay: -1s; }
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(-8deg);
+  }
+  50% {
+    transform: translateY(-18px) rotate(8deg);
+  }
+}
+
+.scrollhint {
+  position: absolute;
+  bottom: 25px;
+  color: #9d8980;
+  font-size: 11px;
+  letter-spacing: .2em;
+}
+
+.scrollhint::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 30px;
+  background: #9d8980;
+  margin: 10px auto;
+}
+
+.wrap {
+  max-width: 1050px;
+  margin: auto;
+}
+
+.section-tag {
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .2em;
+}
+
+.section-title {
+  font-size: clamp(30px, 5vw, 52px);
+  letter-spacing: -.06em;
+  margin: 13px 0;
+}
+
+.section-desc {
+  color: #c8b6aa;
+  line-height: 1.8;
+  max-width: 620px;
+}
+
+.about {
+  background: var(--paper);
+  color: #39271f;
+}
+
+.about .section-tag {
+  color: #9b6545;
+}
+
+.about .section-desc {
+  color: #765f52;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 38px;
+}
+
+.stat {
+  padding: 23px;
+  border-radius: 18px;
+  background: #fff9f2;
+  border: 1px solid #e8d4c3;
+}
+
+.stat strong {
+  font-size: 25px;
+  display: block;
+  color: #71452f;
+}
+
+.stat span {
+  font-size: 12px;
+  color: #927b6c;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 38px;
+}
+
+.feature {
+  padding: 27px;
+  border-radius: 22px;
+  background: linear-gradient(145deg, #ffffff12, #ffffff05);
+  border: 1px solid #ffffff18;
+  min-height: 220px;
+  transition: .25s;
+}
+
+.feature:hover {
+  transform: translateY(-6px);
+  border-color: #e8b96d77;
+}
+
+.feature .emoji {
+  font-size: 34px;
+}
+
+.feature h3 {
+  font-size: 20px;
+  margin: 18px 0 9px;
+}
+
+.feature p {
+  color: #bca99d;
+  line-height: 1.75;
+  font-size: 14px;
+}
+
+.reason {
+  background: linear-gradient(135deg, #563a30, #2a211f 65%);
+}
+
+.reason-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  align-items: center;
+  margin-top: 35px;
+}
+
+.reason-list {
+  display: grid;
+  gap: 13px;
+}
+
+.reason-item {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  padding: 17px;
+  border-radius: 17px;
+  background: #ffffff0b;
+  border: 1px solid #ffffff12;
+}
+
+.reason-item b {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.reason-item small {
+  color: #c9b5a8;
+  line-height: 1.6;
+}
+
+.big-cookie {
+  font-size: clamp(120px, 22vw, 240px);
+  text-align: center;
+  animation: float 6s ease-in-out infinite;
+}
+
+.join {
+  text-align: center;
+  background: radial-gradient(
+    ellipse at 50% 100%,
+    #8c5c3d55,
+    transparent 60%
+  );
+}
+
+.join h2 {
+  font-size: clamp(34px, 6vw, 64px);
+  letter-spacing: -.07em;
+}
+
+.join p {
+  color: #c9b8ac;
+  line-height: 1.8;
+  margin-bottom: 28px;
+}
+
+footer {
+  padding: 28px 7%;
+  text-align: center;
+  color: #88776d;
+  border-top: 1px solid #ffffff12;
+  font-size: 12px;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: .7s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media(max-width:720px) {
+  .navlinks {
+    gap: 12px;
+  }
+
+  .navlinks a {
+    font-size: 11px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .stats {
+    gap: 8px;
+  }
+
+  .stat {
+    padding: 15px;
+  }
+
+  .reason-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .big-cookie {
+    grid-row: 1;
+  }
+
+  .cookie {
+    font-size: 40px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="brand">🍪 우리 서버</div>
+
+  <div class="navlinks">
+    <a href="#about">소개</a>
+    <a href="#features">특징</a>
+    <a href="#why">이유</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- 메인 -->
+<section class="hero">
+
+  <div class="cookie c1">🍪</div>
+  <div class="cookie c2">🍪</div>
+  <div class="cookie c3">✨</div>
+  <div class="cookie c4">🍪</div>
+
+  <div class="hero-inner reveal">
+
+    <div class="eyebrow">
+      🍪 EST. JANUARY 2026 · COOKIE COMMUNITY
+    </div>
+
+    <h1>
+      오늘도 여기서<br>
+      <span class="highlight">쿠키 한 조각</span> 어때?
+    </h1>
+
+    <p>
+      출석하고, 이야기하고, 함께 웃는 곳.<br>
+      우리 서버에서 편하게 쉬어가!
+    </p>
+
+    <div class="actions">
+      <a href="#why" class="btn primary">
+        우리 서버 알아보기 ↓
+      </a>
+
+      <a href="#features" class="btn secondary">
+        서버 구경하기
+      </a>
+    </div>
+
+  </div>
+
+  <div class="scrollhint">SCROLL TO EXPLORE</div>
+
+</section>
+
+
+<!-- 서버 소개 -->
+<section class="about" id="about">
+
+  <div class="wrap reveal">
+
+    <div class="section-tag">
+      WELCOME TO OUR COMMUNITY
+    </div>
+
+    <div class="section-title">
+      따뜻하고 촉촉한 우리들의 아지트
+    </div>
+
+    <p class="section-desc">
+      우리 서버는 소통과 출석을 중심으로
+      함께 만들어가는 작은 커뮤니티야.
+      처음 온 사람도 어색하지 않게,
+      누구나 편하게 이야기 나눌 수 있어.
+    </p>
+
+    <div class="stats">
+
+      <div class="stat">
+        <strong>🍪 함께</strong>
+        <span>친절한 멤버들과 소통</span>
+      </div>
+
+      <div class="stat">
+        <strong>🤖 직접 제작</strong>
+        <span>우리 서버의 봇</span>
+      </div>
+
+      <div class="stat">
+        <strong>🌱 성장 중</strong>
+        <span>서버와 봇이 함께 발전</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- 특징 -->
+<section id="features">
+
+  <div class="wrap">
+
+    <div class="reveal">
+
+      <div class="section-tag">
+        WHAT MAKES US SPECIAL
+      </div>
+
+      <div class="section-title">
+        우리 서버에는 이런 게 있어!
+      </div>
+
+      <p class="section-desc">
+        복잡한 건 잠깐 내려놓고,
+        가볍게 참여하고 즐겨봐.
+      </p>
+
+    </div>
+
+    <div class="cards">
+
+      <article class="feature reveal">
+        <div class="emoji">🤖</div>
+        <h3>직접 만든 봇</h3>
+        <p>
+          서버를 위해 직접 만든 봇!
+          새로운 기능과 개선이 꾸준히 더해지며
+          계속 진화하고 있어.
+        </p>
+      </article>
+
+      <article class="feature reveal">
+        <div class="emoji">📅</div>
+        <h3>출석하며 쌓는 추억</h3>
+        <p>
+          매일 /출첵 으로 출석하고,
+          꾸준히 방문하는 재미를 느껴봐.
+          매일매일 쌓이는 출석 기록!
+        </p>
+      </article>
+
+      <article class="feature reveal">
+        <div class="emoji">💬</div>
+        <h3>편안한 소통</h3>
+        <p>
+          일상 이야기부터 소소한 잡담까지!
+          친절한 멤버들과 부담 없이
+          대화할 수 있어.
+        </p>
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- 들어와야 하는 이유 -->
+<section class="reason" id="why">
+
+  <div class="wrap">
+
+    <div class="reveal">
+
+      <div class="section-tag">
+        WHY JOIN US?
+      </div>
+
+      <div class="section-title">
+        왜 우리 서버에 들어와야 할까?
+      </div>
+
+      <p class="section-desc">
+        완성된 곳에 들어오는 게 아니라,
+        함께 커지는 곳에 처음부터 참여하는 거야.
+      </p>
+
+    </div>
+
+    <div class="reason-grid">
+
+      <div class="reason-list">
+
+        <div class="reason-item reveal">
+          <span>🚀</span>
+          <div>
+            <b>멈추지 않는 업데이트</b>
+            <small>
+              봇은 계속 업데이트돼.
+              새로운 기능이 추가될수록
+              더 편하고 재밌어질 거야.
+            </small>
+          </div>
+        </div>
+
+        <div class="reason-item reveal">
+          <span>🌱</span>
+          <div>
+            <b>서버와 함께 성장하기</b>
+            <small>
+              봇이 발전하고, 멤버가 모이고,
+              커뮤니티도 조금씩 성장 중이야.
+              그 과정을 함께해 줘!
+            </small>
+          </div>
+        </div>
+
+        <div class="reason-item reveal">
+          <span>🫶</span>
+          <div>
+            <b>친절한 사람들</b>
+            <small>
+              처음이라도 걱정하지 마.
+              서로 반갑게 인사하고
+              편하게 어울리는 분위기야.
+            </small>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="big-cookie">🍪</div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- 입장 -->
+<section class="join">
+
+  <div class="wrap reveal">
+
+    <div class="section-tag">
+      YOUR SEAT IS WAITING
+    </div>
+
+    <h2>
+      쿠키 한 조각,<br>
+      <span class="highlight">같이 먹으러 올래?</span>
+    </h2>
+
+    <p>
+      오늘의 출석도, 오늘의 수다도 여기서 시작해 봐.<br>
+      우리 서버에서 기다릴게!
+    </p>
+
+    <a
+      href="https://discord.gg/QB6mftdSXf"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn primary"
+    >
+      🍪 우리 서버 입장하기
+    </a>
+
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  🍪 우리 서버 · EST. 2026.01<br>
+  작은 쿠키들이 모여 커다란 행복이 되는 곳.
+</footer>
+
+
+<script>
+
+// 스크롤 애니메이션
+const observer = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+        observer.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.12 }
+);
+
+document.querySelectorAll(".reveal").forEach(element => {
+  observer.observe(element);
+});
+
+</script>
+
+</body>
+</html>
