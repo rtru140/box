@@ -1,11 +1,32 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#211b1b">
-<title>우리 서버</title>
+
+<!-- SEO & 기본 메타 -->
+<title>우리 서버 | 쿠키 커뮤니티</title>
+<meta name="description" content="출석하고, 이야기하고, 함께 웃는 따뜻한 디스코드 커뮤니티. 직접 만든 봇과 매일 /출첵으로 쌓이는 추억, 친절한 멤버들과 편하게 쉬어가세요.">
+<meta name="keywords" content="디스코드, 커뮤니티, 쿠키서버, 출석체크, 디스코드봇">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rtru140.github.io/box/">
+<meta property="og:title" content="우리 서버 | 쿠키 커뮤니티">
+<meta property="og:description" content="출석하고, 이야기하고, 함께 웃는 곳. 직접 만든 봇과 따뜻한 멤버들이 기다리는 쿠키 커뮤니티에 오세요.">
+<meta property="og:image" content="https://rtru140.github.io/box/og-image.png">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="우리 서버">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="우리 서버 | 쿠키 커뮤니티">
+<meta name="twitter:description" content="출석하고, 이야기하고, 함께 웃는 따뜻한 디스코드 커뮤니티">
+<meta name="twitter:image" content="https://rtru140.github.io/box/og-image.png">
+
+<!-- Favicon (쿠키 이모지) -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍪</text></svg>">
 
 <style>
 :root {
@@ -295,6 +316,17 @@ h1 {
   font-size: 14px;
 }
 
+.feature .cmd {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 10px;
+  background: #ffffff10;
+  border-radius: 8px;
+  font-size: 12px;
+  color: var(--gold);
+  font-family: monospace;
+}
+
 .reason {
   background: linear-gradient(135deg, #563a30, #2a211f 65%);
 }
@@ -443,12 +475,12 @@ footer {
 <!-- 메인 -->
 <section class="hero">
 
-  <div class="cookie c1">🍪</div>
-  <div class="cookie c2">🍪</div>
-  <div class="cookie c3">✨</div>
-  <div class="cookie c4">🍪</div>
+  <div class="cookie c1" aria-hidden="true">🍪</div>
+  <div class="cookie c2" aria-hidden="true">🍪</div>
+  <div class="cookie c3" aria-hidden="true">✨</div>
+  <div class="cookie c4" aria-hidden="true">🍪</div>
 
-  <div class="hero-inner reveal">
+  <div class="hero-inner reveal show">
 
     <div class="eyebrow">
       🍪 EST. JANUARY 2026 · COOKIE COMMUNITY
@@ -465,8 +497,9 @@ footer {
     </p>
 
     <div class="actions">
-      <a href="#why" class="btn primary">
-        우리 서버 알아보기 ↓
+      <!-- 주요 CTA: 디스코드 바로 입장 -->
+      <a href="https://discord.gg/QB6mftdSXf" target="_blank" rel="noopener noreferrer" class="btn primary">
+        🍪 우리 서버 입장하기
       </a>
 
       <a href="#features" class="btn secondary">
@@ -557,16 +590,18 @@ footer {
           새로운 기능과 개선이 꾸준히 더해지며
           계속 진화하고 있어.
         </p>
+        <span class="cmd">/출첵 · /도움말</span>
       </article>
 
       <article class="feature reveal">
         <div class="emoji">📅</div>
         <h3>출석하며 쌓는 추억</h3>
         <p>
-          매일 /출첵 으로 출석하고,
+          매일 <strong>/출첵</strong>으로 출석하고,
           꾸준히 방문하는 재미를 느껴봐.
           매일매일 쌓이는 출석 기록!
         </p>
+        <span class="cmd">매일 /출첵</span>
       </article>
 
       <article class="feature reveal">
@@ -650,7 +685,7 @@ footer {
 
       </div>
 
-      <div class="big-cookie">🍪</div>
+      <div class="big-cookie" aria-hidden="true">🍪</div>
 
     </div>
 
@@ -678,12 +713,7 @@ footer {
       우리 서버에서 기다릴게!
     </p>
 
-    <a
-      href="https://discord.gg/QB6mftdSXf"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="btn primary"
-    >
+    <a href="https://discord.gg/QB6mftdSXf" target="_blank" rel="noopener noreferrer" class="btn primary">
       🍪 우리 서버 입장하기
     </a>
 
@@ -700,7 +730,6 @@ footer {
 
 
 <script>
-
 // 스크롤 애니메이션
 const observer = new IntersectionObserver(
   entries => {
@@ -717,7 +746,6 @@ const observer = new IntersectionObserver(
 document.querySelectorAll(".reveal").forEach(element => {
   observer.observe(element);
 });
-
 </script>
 
 </body>
