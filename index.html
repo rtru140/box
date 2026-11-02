@@ -85,6 +85,7 @@ nav {
 .navlinks {
   display: flex;
   gap: 24px;
+  flex-wrap: wrap;
 }
 
 .navlinks a {
@@ -406,6 +407,199 @@ h1 {
   animation: float 6s ease-in-out infinite;
 }
 
+/* 봇 명령어 섹션 */
+.commands {
+  background: var(--dark);
+}
+
+.cmd-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 38px;
+}
+
+.cmd-card {
+  padding: 22px 24px;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #ffffff10, #ffffff05);
+  border: 1px solid #ffffff15;
+  transition: .25s;
+}
+
+.cmd-card:hover {
+  border-color: #e8b96d66;
+  transform: translateY(-4px);
+}
+
+.cmd-card .cmd-name {
+  font-family: monospace;
+  font-size: 16px;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.cmd-card p {
+  margin: 0;
+  color: #bca99d;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* 가이드 섹션 */
+.guide {
+  background: var(--paper);
+  color: #39271f;
+}
+
+.guide .section-tag {
+  color: #9b6545;
+}
+
+.guide .section-desc {
+  color: #765f52;
+}
+
+.guide-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 36px;
+}
+
+.guide-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 20px 22px;
+  border-radius: 16px;
+  background: #fff9f2;
+  border: 1px solid #e8d4c3;
+}
+
+.guide-item .num {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #e8b96d;
+  color: #35251c;
+  font-weight: 900;
+  font-size: 14px;
+  display: grid;
+  place-items: center;
+}
+
+.guide-item b {
+  display: block;
+  margin-bottom: 4px;
+  color: #4a2f22;
+}
+
+.guide-item small {
+  color: #7a6355;
+  line-height: 1.6;
+  font-size: 13px;
+}
+
+/* FAQ 섹션 */
+.faq {
+  background: linear-gradient(180deg, #2a211f, #211b1b);
+}
+
+.faq-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 36px;
+  max-width: 720px;
+}
+
+.faq-item {
+  border-radius: 16px;
+  background: #ffffff0a;
+  border: 1px solid #ffffff12;
+  overflow: hidden;
+}
+
+.faq-item summary {
+  padding: 18px 22px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 15px;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: "+";
+  font-size: 20px;
+  color: var(--gold);
+  font-weight: 400;
+  transition: .2s;
+}
+
+.faq-item[open] summary::after {
+  content: "−";
+}
+
+.faq-item p {
+  margin: 0;
+  padding: 0 22px 18px;
+  color: #c9b5a8;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+/* 활동 섹션 */
+.activity {
+  background: var(--dark);
+}
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 38px;
+}
+
+.activity-card {
+  padding: 26px;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #ffffff0c, #ffffff04);
+  border: 1px solid #ffffff14;
+  text-align: center;
+  transition: .25s;
+}
+
+.activity-card:hover {
+  transform: translateY(-5px);
+  border-color: #e8b96d55;
+}
+
+.activity-card .emoji {
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+
+.activity-card h3 {
+  font-size: 18px;
+  margin: 0 0 8px;
+}
+
+.activity-card p {
+  margin: 0;
+  color: #bca99d;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
 .join {
   text-align: center;
   background: radial-gradient(
@@ -447,14 +641,19 @@ footer {
 
 @media(max-width:720px) {
   .navlinks {
-    gap: 12px;
+    gap: 10px;
   }
 
   .navlinks a {
     font-size: 11px;
   }
 
-  .cards {
+  .cards,
+  .activity-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cmd-grid {
     grid-template-columns: 1fr;
   }
 
@@ -502,7 +701,9 @@ footer {
   <div class="navlinks">
     <a href="#about">소개</a>
     <a href="#features">특징</a>
-    <a href="#why">이유</a>
+    <a href="#commands">명령어</a>
+    <a href="#guide">가이드</a>
+    <a href="#faq">FAQ</a>
   </div>
 </nav>
 
@@ -728,6 +929,192 @@ footer {
       </div>
 
       <div class="big-cookie" aria-hidden="true">🍪</div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- 봇 명령어 -->
+<section class="commands" id="commands">
+
+  <div class="wrap">
+
+    <div class="reveal">
+      <div class="section-tag">BOT COMMANDS</div>
+      <div class="section-title">자주 쓰는 봇 명령어</div>
+      <p class="section-desc">
+        서버에 들어오면 바로 써볼 수 있는 기본 명령어들이야.
+        더 자세한 건 서버 안에서 <strong>/도움말</strong>로 확인해 봐!
+      </p>
+    </div>
+
+    <div class="cmd-grid">
+
+      <div class="cmd-card reveal">
+        <div class="cmd-name">/출첵</div>
+        <p>매일 출석체크! 꾸준히 하면 출석 기록이 쌓여. 오늘도 잊지 말고 한 번 눌러봐.</p>
+      </div>
+
+      <div class="cmd-card reveal">
+        <div class="cmd-name">/도움말</div>
+        <p>봇이 할 수 있는 모든 기능을 한눈에 볼 수 있어. 처음 온 사람에게 특히 추천!</p>
+      </div>
+
+      <div class="cmd-card reveal">
+        <div class="cmd-name">/내정보</div>
+        <p>내 출석 횟수나 간단한 정보를 확인할 수 있어. 얼마나 꾸준했는지 한 번 봐볼까?</p>
+      </div>
+
+      <div class="cmd-card reveal">
+        <div class="cmd-name">/랭킹</div>
+        <p>출석 랭킹을 확인해 봐. 누가 제일 부지런한 쿠키인지 궁금하지 않아?</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- 서버 가이드 -->
+<section class="guide" id="guide">
+
+  <div class="wrap">
+
+    <div class="reveal">
+      <div class="section-tag">SERVER GUIDE</div>
+      <div class="section-title">처음 온 사람을 위한 가이드</div>
+      <p class="section-desc">
+        복잡한 규칙은 없어.
+        서로 배려하면서 편하게 즐기면 돼.
+      </p>
+    </div>
+
+    <div class="guide-list">
+
+      <div class="guide-item reveal">
+        <div class="num">1</div>
+        <div>
+          <b>인사부터 가볍게</b>
+          <small>들어오면 인사 채널에서 간단하게 인사해 줘. 부담 없이 “안녕하세요!” 한 마디면 충분해.</small>
+        </div>
+      </div>
+
+      <div class="guide-item reveal">
+        <div class="num">2</div>
+        <div>
+          <b>출석으로 하루를 시작</b>
+          <small>매일 /출첵 한 번만 해도 서버에 익숙해지는 느낌이 들어. 작은 습관이 쌓이는 재미야.</small>
+        </div>
+      </div>
+
+      <div class="guide-item reveal">
+        <div class="num">3</div>
+        <div>
+          <b>대화는 자유롭게</b>
+          <small>잡담, 일상 공유, 질문 뭐든지 환영이야. 너무 조용해서 어색할까 걱정하지 마.</small>
+        </div>
+      </div>
+
+      <div class="guide-item reveal">
+        <div class="num">4</div>
+        <div>
+          <b>서로 존중하기</b>
+          <small>비난이나 과도한 드립은 피하고, 다들 편하게 있을 수 있는 분위기를 함께 만들어 가자.</small>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- 활동 소개 -->
+<section class="activity" id="activity">
+
+  <div class="wrap">
+
+    <div class="reveal">
+      <div class="section-tag">WHAT WE DO</div>
+      <div class="section-title">여기서 뭘 할 수 있어?</div>
+      <p class="section-desc">
+        크게 거창한 건 없어.
+        그냥 편하게 시간을 보내는 공간이야.
+      </p>
+    </div>
+
+    <div class="activity-grid">
+
+      <div class="activity-card reveal">
+        <div class="emoji">☕</div>
+        <h3>일상 수다</h3>
+        <p>오늘 뭐 먹었는지, 뭐 봤는지, 기분 어땠는지. 사소한 이야기부터 시작해도 좋아.</p>
+      </div>
+
+      <div class="activity-card reveal">
+        <div class="emoji">🎮</div>
+        <h3>같이 놀기</h3>
+        <p>게임이든 음악이든, 같이 하고 싶을 때 말해 봐. 가볍게 어울릴 수 있어.</p>
+      </div>
+
+      <div class="activity-card reveal">
+        <div class="emoji">📈</div>
+        <h3>함께 성장</h3>
+        <p>봇 기능 제안이나 서버 아이디어도 환영해. 같이 만들어가자.</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+
+  <div class="wrap">
+
+    <div class="reveal">
+      <div class="section-tag">FAQ</div>
+      <div class="section-title">자주 묻는 질문</div>
+      <p class="section-desc">
+        궁금한 게 있을 수 있으니까 미리 정리해 봤어.
+      </p>
+    </div>
+
+    <div class="faq-list">
+
+      <details class="faq-item reveal">
+        <summary>처음 와도 어색하지 않나요?</summary>
+        <p>전혀! 다들 친절하고, 처음 온 사람도 부담 없이 인사할 수 있는 분위기야. 천천히 익숙해지면 돼.</p>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary>출석체크는 꼭 해야 하나요?</summary>
+        <p>필수는 아니야. 하고 싶을 때 하면 돼. 다만 매일 하면 기록이 쌓이는 재미가 있어서 추천해!</p>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary>봇은 누가 만들었어요?</summary>
+        <p>서버를 운영하는 사람이 직접 만들고 있어. 그래서 피드백을 바로 반영할 수 있고, 계속 발전 중이야.</p>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary>나이 제한이나 특별한 조건이 있나요?</summary>
+        <p>특별한 조건은 없어. 디스코드를 쓸 수 있고, 서로 배려하면서 대화할 수 있으면 충분해.</p>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary>서버가 너무 조용하면 어떡하죠?</summary>
+        <p>아직 작은 커뮤니티라 조용할 때도 있어. 그래도 그게 부담 없이 쉴 수 있는 분위기이기도 해. 이야기 꺼내면 다들 반갑게 받아줄 거야.</p>
+      </details>
 
     </div>
 
