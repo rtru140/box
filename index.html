@@ -131,6 +131,42 @@ section {
   letter-spacing: .08em;
 }
 
+/* 라이브 멤버 카운트 배지 */
+.member-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffffff12, #ffffff08);
+  border: 1px solid #e8b96d55;
+  box-shadow: 0 4px 20px #e8b96d15;
+  font-size: 14px;
+  color: #f2cda7;
+  letter-spacing: 0.02em;
+}
+
+.member-badge .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #7dcea0;
+  box-shadow: 0 0 8px #7dcea0aa;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.member-badge strong {
+  color: var(--gold);
+  font-weight: 900;
+  font-size: 16px;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.85); }
+}
+
 h1 {
   font-size: clamp(42px, 8vw, 90px);
   line-height: 1.08;
@@ -486,6 +522,12 @@ footer {
       🍪 EST. JANUARY 2026 · COOKIE COMMUNITY
     </div>
 
+    <!-- 실시간 멤버 수 배지 -->
+    <div class="member-badge" id="member-badge">
+      <span class="dot" aria-hidden="true"></span>
+      <span>현재 <strong id="member-count">…</strong>명의 쿠키</span>
+    </div>
+
     <h1>
       오늘도 여기서<br>
       <span class="highlight">쿠키 한 조각</span> 어때?
@@ -537,8 +579,8 @@ footer {
     <div class="stats">
 
       <div class="stat">
-        <strong>🍪 함께</strong>
-        <span>친절한 멤버들과 소통</span>
+        <strong id="stat-members">🍪</strong>
+        <span>함께하는 멤버</span>
       </div>
 
       <div class="stat">
@@ -746,6 +788,37 @@ const observer = new IntersectionObserver(
 document.querySelectorAll(".reveal").forEach(element => {
   observer.observe(element);
 });
+
+// 실시간 Discord 멤버 수
+const INVITE_CODE = 'QB6mftdSXf';
+
+async function updateMemberCount() {
+  try {
+    const res = await fetch(
+      `https://discord.com/api/v9/invites/${INVITE_CODE}?with_counts=true`,
+      { cache: 'no-store' }
+    );
+    if (!res.ok) throw new Error('API error');
+    const data = await res.json();
+
+    const count = data.approximate_member_count;
+    const formatted = count.toLocaleString('ko-KR');
+
+    const heroEl = document.getElementById('member-count');
+    const statEl = document.getElementById('stat-members');
+
+    if (heroEl) heroEl.textContent = formatted;
+    if (statEl) statEl.textContent = formatted + '명';
+  } catch (err) {
+    console.error('멤버 수 불러오기 실패:', err);
+    const heroEl = document.getElementById('member-count');
+    if (heroEl) heroEl.textContent = '—';
+  }
+}
+
+// 페이지 로드 시 + 60초마다 갱신
+updateMemberCount();
+setInterval(updateMemberCount, 60000);
 </script>
 
 </body>
