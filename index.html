@@ -101,6 +101,7 @@ nav {
 section {
   padding: 110px 7%;
   position: relative;
+  overflow: hidden;
 }
 
 .hero {
@@ -222,12 +223,34 @@ h1 {
   position: absolute;
   font-size: 65px;
   animation: float 5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.85;
 }
 
 .c1 { top: 22%; left: 13%; }
 .c2 { top: 30%; right: 13%; animation-delay: -2s; }
 .c3 { bottom: 15%; left: 20%; animation-delay: -3s; }
 .c4 { bottom: 18%; right: 19%; animation-delay: -1s; }
+
+/* 섹션용 작은 쿠키 장식 */
+.cookie-sm {
+  position: absolute;
+  font-size: 36px;
+  animation: float 6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.7;
+}
+
+.cs1 { top: 12%; right: 8%; animation-delay: -1.5s; }
+.cs2 { bottom: 18%; left: 6%; animation-delay: -3.2s; }
+.cs3 { top: 40%; left: 4%; animation-delay: -0.8s; font-size: 28px; }
+.cs4 { top: 20%; right: 5%; animation-delay: -2.5s; }
+.cs5 { bottom: 12%; right: 10%; animation-delay: -4s; font-size: 30px; }
+.cs6 { top: 15%; left: 7%; animation-delay: -1.2s; }
+.cs7 { bottom: 22%; right: 7%; animation-delay: -2.8s; }
+.cs8 { top: 55%; right: 4%; animation-delay: -3.5s; font-size: 26px; }
 
 @keyframes float {
   0%, 100% {
@@ -258,6 +281,8 @@ h1 {
 .wrap {
   max-width: 1050px;
   margin: auto;
+  position: relative;
+  z-index: 1;
 }
 
 .section-tag {
@@ -676,6 +701,10 @@ footer {
   .cookie {
     font-size: 40px;
   }
+
+  .cookie-sm {
+    font-size: 24px;
+  }
 }
 
 @media(prefers-reduced-motion:reduce) {
@@ -940,6 +969,9 @@ footer {
 <!-- 봇 명령어 -->
 <section class="commands" id="commands">
 
+  <div class="cookie-sm cs1" aria-hidden="true">🍪</div>
+  <div class="cookie-sm cs2" aria-hidden="true">🍪</div>
+
   <div class="wrap">
 
     <div class="reveal">
@@ -982,6 +1014,9 @@ footer {
 
 <!-- 서버 가이드 -->
 <section class="guide" id="guide">
+
+  <div class="cookie-sm cs3" aria-hidden="true">🍪</div>
+  <div class="cookie-sm cs4" aria-hidden="true">🍪</div>
 
   <div class="wrap">
 
@@ -1038,6 +1073,9 @@ footer {
 <!-- 활동 소개 -->
 <section class="activity" id="activity">
 
+  <div class="cookie-sm cs5" aria-hidden="true">🍪</div>
+  <div class="cookie-sm cs6" aria-hidden="true">✨</div>
+
   <div class="wrap">
 
     <div class="reveal">
@@ -1078,6 +1116,9 @@ footer {
 
 <!-- FAQ -->
 <section class="faq" id="faq">
+
+  <div class="cookie-sm cs7" aria-hidden="true">🍪</div>
+  <div class="cookie-sm cs8" aria-hidden="true">🍪</div>
 
   <div class="wrap">
 
